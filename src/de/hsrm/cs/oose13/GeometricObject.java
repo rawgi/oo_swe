@@ -1,6 +1,8 @@
 package de.hsrm.cs.oose13;
 
-public class GeometricObject{
+import java.awt.Graphics;
+
+public class GeometricObject implements MoveAndPaintable {
     protected Vertex corner; //obere links
     protected Vertex movement;
     protected double width;
@@ -21,6 +23,14 @@ public class GeometricObject{
         return "obere linke Ecke: "+corner.toString()+", Breite: "+width+", Hoehe: "+height+", movement: "+movement.toString()+"";
     }
 
+    public boolean equals(GeometricObject that){
+        if(this.corner.equals(that.getCorner()) && this.movement.equals(that.getMovement())
+        		&& this.width==that.width && this.height==that.height){
+            return true;
+        }
+	return false;
+    }
+    
     public void move(){
     	corner.move(movement);
     }
@@ -28,6 +38,11 @@ public class GeometricObject{
     public void move(Vertex v){
         corner.move(v);
     }
+    
+	@Override
+	public void paintMeTo(Graphics g) {
+		g.drawRect((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
+	}
     
     public double size(){
     	return height*width;

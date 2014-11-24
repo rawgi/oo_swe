@@ -3,7 +3,6 @@ package de.hsrm.cs.oose13;
 public class Vertex{
     private double x;
     private double y;
-    
     public Vertex(double x, double y){
         this.x = x;
         this.y = y;
@@ -13,9 +12,16 @@ public class Vertex{
         return "x: "+x+", y: "+y+"";
     }
     
+    public boolean equals(Vertex that){
+	if(this.x==that.getX() && this.y==that.getY()){
+	    return true;
+	}
+	return false;
+    }
+    
     public void move(Vertex v){
-        this.x = this.x + v.x;
-        this.y = this.y + v.y;
+    		this.x = this.x + v.x;
+    		this.y = this.y + v.y;
     }
     
     public void moveTo(Vertex v){
@@ -24,7 +30,7 @@ public class Vertex{
     }
 
     /*Getter*/
-      public double getX(){
+    public double getX(){
     	return x;
     }
     	

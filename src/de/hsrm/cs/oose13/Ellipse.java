@@ -17,6 +17,6 @@ public class Ellipse extends GeometricObject{
     
 	@Override
     public double size(){
-    	return (Math.PI*width*height)/2;
+    	return Math.PI*(width/2)*(height/2);
     }
 }
