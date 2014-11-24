@@ -12,8 +12,7 @@ public class Ellipse extends GeometricObject{
 	
 	@Override
     public String toString(){
-		//keine ahnung, was ich hier groß überschreiben soll...
-        return "obere linke Ecke: "+corner.toString()+", Breite: "+width+", Hoehe: "+height+", movement: "+movement.toString()+"";
+        return "Ellipse mit: obere linke Ecke: "+corner.toString()+", Breite: "+width+", Hoehe: "+height+", movement: "+movement.toString()+"";
     }
     
 	@Override
