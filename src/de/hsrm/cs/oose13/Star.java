@@ -1,5 +1,6 @@
 package de.hsrm.cs.oose13;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
 
@@ -9,7 +10,7 @@ public class Star extends GeometricObject{
     private double innerDiameter;
     private double outerDiameter;
     private double radius;
-    private Polygon myPolygon;
+    private Polygon myPolygon = new Polygon();
 
     private boolean runter = true;
     private boolean rechts = true;
@@ -29,9 +30,12 @@ public class Star extends GeometricObject{
     
 	@Override
 	public void paintMeTo(Graphics g) {
-		g.drawPolygon(myPolygon);
+		g.setColor(new Color(1,1,100));
+		g.fillPolygon(myPolygon);
 	}
     
+	//müsste theoretisch nur für den erneuten Aufruf von createPolygon() überschrieben werden,
+	//aber als kleine Spielerei bleibt der Stern hierbe im Bildschirm
 	@Override
 	public void move(){
 
@@ -57,20 +61,20 @@ public class Star extends GeometricObject{
 	}
 	
 	private void createPolygon(){
-		int xPoints[] = new int[spickes*2];
-		int yPoints[] = new int[spickes*2];
-		int q = 5;
-		float step = 360.f / (float)(spickes);
-		float pos = 0;
-		for (int i=0; i<spickes*2; i++) {
-			float rad = (float) (2*Math.PI*pos / 360.f);
-			pos += step*q;
-			xPoints[i] = (int) (radius+radius*Math.sin(rad)+corner.getX());
-			yPoints[i] = (int) (radius+radius*Math.cos(rad)+corner.getY());
+		myPolygon.reset();
+		for(int i =1; i<=spickes*2; i++){
+			if(i%2==0){
+				myPolygon.addPoint((int)(corner.getX()+this.radius+this.radius*Math.cos((i*2*Math.PI)/(this.spickes*2))),
+						(int)(corner.getY()+this.radius+(this.radius*Math.sin((i*2*Math.PI)/(this.spickes*2)))));
+			}else{
+				myPolygon.addPoint((int)(corner.getX()+this.radius+(this.innerDiameter/2)*Math.cos((i*2*Math.PI)/(this.spickes*2))),
+						(int)(corner.getY()+this.radius+((this.innerDiameter/2)*Math.sin((i*2*Math.PI)/(this.spickes*2)))));
+			}
 		}
-
-		myPolygon = new Polygon(xPoints,yPoints,spickes*2);
 	}
+	
+
+	
 	
     //Getter
     public int getSpickes(){
@@ -95,13 +99,13 @@ public class Star extends GeometricObject{
     	createPolygon();
     }
 
-    public void setInnerDiameter(double innerDiameter2){
-    	this.innerDiameter = innerDiameter2;
+    public void setInnerDiameter(double innerDiameter){
+    	this.innerDiameter = innerDiameter;
     	createPolygon();
     }
 
-    public void setOuterDiameter(double outerDiameter2){
-    	this.outerDiameter = outerDiameter2;
+    public void setOuterDiameter(double outerDiameter){
+    	this.outerDiameter = outerDiameter;
     	createPolygon();
     }
 

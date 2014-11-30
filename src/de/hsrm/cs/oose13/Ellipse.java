@@ -1,5 +1,7 @@
 package de.hsrm.cs.oose13;
 
+import java.awt.Graphics;
+
 public class Ellipse extends GeometricObject{
 
 	public Ellipse(Vertex corner, double width, double height) {
@@ -19,4 +21,9 @@ public class Ellipse extends GeometricObject{
     public double size(){
     	return Math.PI*(width/2)*(height/2);
     }
+	
+	@Override
+	public void paintMeTo(Graphics g) {
+		g.drawOval((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
+	}
 }

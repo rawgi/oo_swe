@@ -150,7 +150,7 @@ class Test{
 //		Dialogue dia3 = new Dialogue(new ButtonLogicLowercase());
 //		Dialogue dia4 = new Dialogue(new ButtonLogicEasterDay());
 //		
-		ShowMoveable shmv = new ShowMoveable(new Star(new Vertex(100,100), new Vertex(1,2), 9, 50, 50));
+		ShowMoveable shmv = new ShowMoveable(new Star(new Vertex(100,100), new Vertex(1,2), 10, 20, 50));
 		shmv.show();
 	}
 }
