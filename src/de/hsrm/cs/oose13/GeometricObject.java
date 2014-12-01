@@ -25,7 +25,7 @@ public class GeometricObject implements MoveAndPaintable {
 
     public boolean equals(GeometricObject that){
         if(this.corner.equals(that.getCorner()) && this.movement.equals(that.getMovement())
-        		&& this.width==that.width && this.height==that.height){
+        		&& this.width==that.getWidth() && this.height==that.getHeight()){
             return true;
         }
 	return false;
