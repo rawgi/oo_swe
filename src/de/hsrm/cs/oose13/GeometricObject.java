@@ -23,12 +23,12 @@ public class GeometricObject implements MoveAndPaintable {
         return "obere linke Ecke: "+corner.toString()+", Breite: "+width+", Hoehe: "+height+", movement: "+movement.toString()+"";
     }
 
-    public boolean equals(GeometricObject that){
-        if(this.corner.equals(that.getCorner()) && this.movement.equals(that.getMovement())
-        		&& this.width==that.getWidth() && this.height==that.getHeight()){
-            return true;
-        }
-	return false;
+    public boolean equals(Object obj){
+    	if(!this.getClass()==obj.getClass()) return false;
+    	GeometricObject that = (GeometricObject)obj;
+    	
+        return this.corner.equals(that.getCorner()) && this.movement.equals(that.getMovement())
+        	&& this.width==that.getWidth() && this.height==that.getHeight()
     }
     
     public void move(){
@@ -39,10 +39,10 @@ public class GeometricObject implements MoveAndPaintable {
         corner.move(v);
     }
     
-	@Override
-	public void paintMeTo(Graphics g) {
-		g.drawRect((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
-	}
+    @Override
+    public void paintMeTo(Graphics g) {
+    	g.drawRect((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
+    }
     
     public double size(){
     	return height*width;
