@@ -28,54 +28,31 @@ public class Star extends GeometricObject{
     	createPolygon();
     }
     
-	@Override
-	public void paintMeTo(Graphics g) {
-		g.setColor(new Color(1,1,100));
-		g.fillPolygon(myPolygon);
-	}
+    @Override
+    public void paintMeTo(Graphics g) {
+	g.setColor(new Color(1,1,100));
+	g.fillPolygon(myPolygon);
+    }
     
-	//müsste theoretisch nur für den erneuten Aufruf von createPolygon() überschrieben werden,
-	//aber als kleine Spielerei bleibt der Stern hierbe im Bildschirm
-	@Override
-	public void move(){
-
-		if(corner.getX() <= 0 || corner.getX() >= 800-outerDiameter){
-			if(rechts){
-				rechts = false; 
-			}else{
-				rechts = true;
-			}
-			movement.setX(movement.getX()-movement.getX()*2);
-		}
-    	
-		if(corner.getY() <= 0 || corner.getY() >= 600-outerDiameter){
-			if(runter){
-				runter = false; 
-			}else{
-				runter = true;
-			}
-			movement.setY(movement.getY()-movement.getY()*2);
-		}
+    @Override
+    public void move(){
     	corner.move(movement);
     	createPolygon();
-	}
+    }
 	
-	private void createPolygon(){
-		myPolygon.reset();
-		for(int i =1; i<=spickes*2; i++){
-			if(i%2==0){
-				myPolygon.addPoint((int)(corner.getX()+this.radius+this.radius*Math.cos((i*2*Math.PI)/(this.spickes*2))),
-						(int)(corner.getY()+this.radius+(this.radius*Math.sin((i*2*Math.PI)/(this.spickes*2)))));
-			}else{
-				myPolygon.addPoint((int)(corner.getX()+this.radius+(this.innerDiameter/2)*Math.cos((i*2*Math.PI)/(this.spickes*2))),
-						(int)(corner.getY()+this.radius+((this.innerDiameter/2)*Math.sin((i*2*Math.PI)/(this.spickes*2)))));
-			}
+    private void createPolygon(){
+	myPolygon.reset();
+	for(int i =1; i<=spickes*2; i++){
+		if(i%2==0){
+			myPolygon.addPoint((int)(corner.getX()+this.radius+this.radius*Math.cos((i*2*Math.PI)/(this.spickes*2))),
+				(int)(corner.getY()+this.radius+(this.radius*Math.sin((i*2*Math.PI)/(this.spickes*2)))));
+		}else{
+			myPolygon.addPoint((int)(corner.getX()+this.radius+(this.innerDiameter/2)*Math.cos((i*2*Math.PI)/(this.spickes*2))),
+				(int)(corner.getY()+this.radius+((this.innerDiameter/2)*Math.sin((i*2*Math.PI)/(this.spickes*2)))));
 		}
 	}
-	
-
-	
-	
+    }
+    
     //Getter
     public int getSpickes(){
     	return spickes;
