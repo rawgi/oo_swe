@@ -12,11 +12,11 @@ public class Vertex{
         return "x: "+x+", y: "+y+"";
     }
     
-    public boolean equals(Vertex that){
-	if(this.x==that.getX() && this.y==that.getY()){
-	    return true;
-	}
-	return false;
+    @Override
+    public boolean equals(Object obj){
+	if(this.getClass()==obj.getClass()) return false;
+	Vertex that = (Vertex)obj;
+	return this.x==that.getX() && this.y==that.getY();
     }
     
     public void move(Vertex v){
