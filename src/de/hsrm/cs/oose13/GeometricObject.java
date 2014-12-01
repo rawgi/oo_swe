@@ -74,8 +74,11 @@ public class GeometricObject implements MoveAndPaintable {
     			!this.isLeftOf(that) && !this.isRightOf(that);
     }
     
-    public void invertMovement(){
+    public void invertXMovement(){
         movement.setX(movement.getX()-movement.getX());
+    }
+    
+    public void invertYMovement(){
         movement.setY(movement.getY()-movement.getY());
     }
     
