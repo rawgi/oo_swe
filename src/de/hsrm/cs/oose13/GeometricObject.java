@@ -74,6 +74,11 @@ public class GeometricObject implements MoveAndPaintable {
     			!this.isLeftOf(that) && !this.isRightOf(that);
     }
     
+    public void invertMovement(){
+        movement.setX(movement.getX()-movement.getX());
+        movement.setY(movement.getY()-movement.getY());
+    }
+    
     /*Getter*/
     public Vertex getCorner(){
     	return corner;
