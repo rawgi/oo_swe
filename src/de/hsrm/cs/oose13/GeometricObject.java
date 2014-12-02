@@ -25,11 +25,11 @@ public class GeometricObject implements MoveAndPaintable {
 
     @Override
     public boolean equals(Object obj){
-    	if(!this.getClass()==obj.getClass()) return false;
+    	if(!(this.getClass()==obj.getClass())) return false;
     	GeometricObject that = (GeometricObject)obj;
     	
         return this.corner.equals(that.getCorner()) && this.movement.equals(that.getMovement())
-        	&& this.width==that.getWidth() && this.height==that.getHeight()
+        	&& this.width==that.getWidth() && this.height==that.getHeight();
     }
     
     public void move(){

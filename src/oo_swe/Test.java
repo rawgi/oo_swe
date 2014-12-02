@@ -1,6 +1,8 @@
 package oo_swe;
 
 import de.hsrm.cs.oose13.GeometricObject;
+import de.hsrm.cs.oose13.GeometricObjectsScene;
+import de.hsrm.cs.oose13.ScenePanel;
 import de.hsrm.cs.oose13.ShowMoveable;
 import de.hsrm.cs.oose13.Star;
 import de.hsrm.cs.oose13.Vertex;
@@ -142,7 +144,7 @@ class Test{
 //			System.out.println("geo2 sollte unter geo1 sein!");
 //		
 //		if(geo2.touches(geo1))
-//			System.out.println("geo2 und geo1 berühren sich nicht!");
+//			System.out.println("geo2 und geo1 berï¿½hren sich nicht!");
 //		
 //		//ButtonLogic und Dialogue
 //		Dialogue dia1 = new Dialogue(new ButtonLogicIncludesDepp());
@@ -150,7 +152,10 @@ class Test{
 //		Dialogue dia3 = new Dialogue(new ButtonLogicLowercase());
 //		Dialogue dia4 = new Dialogue(new ButtonLogicEasterDay());
 //		
-		ShowMoveable shmv = new ShowMoveable(new Star(new Vertex(100,100), new Vertex(1,2), 10, 20, 50));
-		shmv.show();
+//		ShowMoveable shmv = new ShowMoveable(new Star(new Vertex(100,100), new Vertex(1,2), 10, 20, 50));
+//		shmv.show();
+		GeometricObject[] geos = ;
+		geos[0] = new GeometricObject(new Vertex(1,1),new Vertex(2,2), 40, 50);
+		ScenePanel sp = new ScenePanel(new GeometricObjectsScene(geos, 400, 300));
 	}
 }
