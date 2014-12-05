@@ -16,15 +16,19 @@ public class GeometricObjectsScene implements CollisionScene {
 
 	@Override
 	public void collisions() {
-		for (int i=0; i<=myObjects.length; i++) {
+		Vertex moveSave;
+		for (int i=0; i < myObjects.length; i++) {
 			GeometricObject obj = myObjects[i];
-			for (int j = i + 1; j <= myObjects.length; j++) {
+			for (int j = i + 1; j < myObjects.length; j++) {
 				GeometricObject check = myObjects[j];
 				if (obj.touches(check)) {
-					myObjects[i].invertXMovement();
-					myObjects[i].invertYMovement();
-					myObjects[j].invertXMovement();
-					myObjects[j].invertYMovement();
+//					myObjects[i].invertXMovement();
+//					myObjects[i].invertYMovement();
+//					myObjects[j].invertXMovement();
+//					myObjects[j].invertYMovement();
+					moveSave = myObjects[i].getMovement();
+					myObjects[i].setMovement(myObjects[j].getMovement());
+					myObjects[j].setMovement(moveSave);
 				}
 			}
 			if (obj.getCorner().getX() <= 0
@@ -40,14 +44,14 @@ public class GeometricObjectsScene implements CollisionScene {
 
 	@Override
 	public void move(){
-	  for(int i=0; i<=myObjects.length; i++){
+	  for(int i=0; i < myObjects.length; i++){
 	    myObjects[i].move();
 	  }
 	}
 
 	@Override
 	public void paintAll(Graphics g) {
-		for (int i = 0; i <= myObjects.length; i++) {
+		for (int i = 0; i < myObjects.length; i++) {
 			myObjects[i].paintMeTo(g);
 		}
 	}

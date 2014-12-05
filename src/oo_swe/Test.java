@@ -1,10 +1,13 @@
 package oo_swe;
 
+import de.hsrm.cs.oose13.Circle;
+import de.hsrm.cs.oose13.Ellipse;
 import de.hsrm.cs.oose13.GeometricObject;
 import de.hsrm.cs.oose13.GeometricObjectsScene;
 import de.hsrm.cs.oose13.ScenePanel;
 import de.hsrm.cs.oose13.ShowMoveable;
 import de.hsrm.cs.oose13.Star;
+import de.hsrm.cs.oose13.StartStopScenePanel;
 import de.hsrm.cs.oose13.Vertex;
 import name.panitz.oose13.dialogue.ButtonLogicEasterDay;
 import name.panitz.oose13.dialogue.ButtonLogicIncludesDepp;
@@ -154,8 +157,21 @@ class Test{
 //		
 //		ShowMoveable shmv = new ShowMoveable(new Star(new Vertex(100,100), new Vertex(1,2), 10, 20, 50));
 //		shmv.show();
-		GeometricObject[] geos = ;
+		GeometricObject[] geos = new GeometricObject[12];
 		geos[0] = new GeometricObject(new Vertex(1,1),new Vertex(2,2), 40, 50);
-		ScenePanel sp = new ScenePanel(new GeometricObjectsScene(geos, 400, 300));
+		geos[1] = new Ellipse(new Vertex(350,1),new Vertex(2,2), 40, 50);
+		geos[2] = new Circle(new Vertex(1,210),new Vertex(2,2), 40);
+		geos[3] = new Star(new Vertex(50,123),new Vertex(2,2), 12, 40, 50);
+		geos[4] = new GeometricObject(new Vertex(600,300),new Vertex(2,2), 40, 50);
+		geos[5] = new Ellipse(new Vertex(350,500),new Vertex(2,2), 40, 50);
+		geos[6] = new Circle(new Vertex(400,210),new Vertex(2,2), 40);
+		geos[7] = new Star(new Vertex(500,123),new Vertex(2,2), 12, 40, 50);
+		
+		geos[8] = new Star(new Vertex(10,70),new Vertex(8,4), 8, 20, 50);
+		geos[9] = new Star(new Vertex(100,400),new Vertex(3,9), 5, 30, 50);
+		geos[10] = new Star(new Vertex(50,470),new Vertex(2,2), 15, 60, 80);
+		geos[11] = new Star(new Vertex(600,100),new Vertex(2,2), 10, 40, 50);
+		StartStopScenePanel sp = new StartStopScenePanel(new GeometricObjectsScene(geos, 800, 600));
+		sp.show();
 	}
 }
