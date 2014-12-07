@@ -76,11 +76,13 @@ public class GeometricObject implements MoveAndPaintable {
     }
     
     public void invertXMovement(){
-        movement.setX(movement.getX()-2*movement.getX());
+//        movement.setX(movement.getX()-2*movement.getX());
+    	movement.setX(movement.getX()*(-1));
     }
     
     public void invertYMovement(){
-        movement.setY(movement.getY()-2*movement.getY());
+//        movement.setY(movement.getY()-2*movement.getY());
+    	movement.setY(movement.getY()*(-1));
     }
     
     /*Getter*/

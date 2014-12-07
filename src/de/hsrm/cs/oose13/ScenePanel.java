@@ -1,6 +1,5 @@
 package de.hsrm.cs.oose13;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
