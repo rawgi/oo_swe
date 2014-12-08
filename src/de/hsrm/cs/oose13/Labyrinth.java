@@ -2,9 +2,13 @@ package de.hsrm.cs.oose13;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import de.hsrm.cs.oose13.util.FileUtil;
 
@@ -13,6 +17,13 @@ public class Labyrinth extends JPanel{
 	private GeometricObject[] myObjects;
 	private int recLength = 20;
 	private String[] lines;
+	private int playerPos;
+
+	JFrame frame = new JFrame("Labyrinth");
+	private JButton btnUp = new JButton();
+	private JButton btnDown = new JButton();
+	private JButton btnLeft = new JButton();
+	private JButton btnRight = new JButton();
 	
 	public Labyrinth(String fileName){
 		lines = FileUtil.readTextLines("files/"+fileName);
@@ -29,18 +40,76 @@ public class Labyrinth extends JPanel{
 		}
 		myObjects = new GeometricObject[counter];
 		create();
+		
+		btnUp.setBounds((lines[0].length()*recLength)/2-20, lines.length*recLength, 40, 40);
+		btnUp.addActionListener(e -> {
+			if(!isWall(new GeometricObject(new Vertex(myObjects[playerPos].getCorner().getX(),myObjects[playerPos].getCorner().getY()-recLength),
+					myObjects[playerPos].getWidth(), myObjects[playerPos].getHeight()))){
+				
+				myObjects[playerPos].getCorner().setY(myObjects[playerPos].getCorner().getY()-recLength);
+				repaint();
+				System.out.println("up");
+			}
+		});
+		
+		btnDown.setBounds((lines[0].length()*recLength)/2-20, lines.length*recLength+40, 40, 40);
+		btnDown.addActionListener(e -> {
+			if(!isWall(new GeometricObject(new Vertex(myObjects[playerPos].getCorner().getX(),myObjects[playerPos].getCorner().getY()+recLength),
+					myObjects[playerPos].getWidth(), myObjects[playerPos].getHeight()))){
+				
+				myObjects[playerPos].getCorner().setY(myObjects[playerPos].getCorner().getY()+recLength);
+				repaint();
+				System.out.println("down");
+			}
+		});
+		
+		btnLeft.setBounds((lines[0].length()*recLength)/2-60, lines.length*recLength+40, 40, 40);
+		btnLeft.addActionListener(e -> {
+			if(!isWall(new GeometricObject(new Vertex(myObjects[playerPos].getCorner().getX()-recLength,myObjects[playerPos].getCorner().getY()),
+					myObjects[playerPos].getWidth(), myObjects[playerPos].getHeight()))){
+				
+				myObjects[playerPos].getCorner().setX(myObjects[playerPos].getCorner().getX()-recLength);
+				repaint();
+				System.out.println("left");
+			}
+		});
+		
+		btnRight.setBounds((lines[0].length()*recLength)/2+20, lines.length*recLength+40, 40, 40);
+		btnRight.addActionListener(e -> {
+			if(!isWall(new GeometricObject(new Vertex(myObjects[playerPos].getCorner().getX()+recLength,myObjects[playerPos].getCorner().getY()),
+					myObjects[playerPos].getWidth(), myObjects[playerPos].getHeight()))){
+				
+				myObjects[playerPos].getCorner().setX(myObjects[playerPos].getCorner().getX()+recLength);
+				repaint();
+				System.out.println("right");
+			}
+		});
+		setLayout(null);
+		add(btnUp);
+		add(btnDown);
+		add(btnLeft);
+		add(btnRight);
+	}
+	
+	private boolean isWall(GeometricObject nextPos){
+		for(GeometricObject check: myObjects){
+			if(nextPos.touches(check)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override
 	public Dimension getPreferredSize(){
-		return new Dimension(lines[0].length()*recLength,lines.length*recLength);
+		return new Dimension(lines[0].length()*recLength,lines.length*recLength+80);
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		for(GeometricObject geo: myObjects){
-			g.drawRect((int)geo.getCorner().getX(), (int)geo.getCorner().getX(), (int)geo.getWidth(), (int)geo.getHeight());
+		for (int i = 0; i < myObjects.length; i++) {
+			myObjects[i].paintMeTo(g);
 		}
 	}
 	
@@ -52,10 +121,11 @@ public class Labyrinth extends JPanel{
 			char[] chars = curLine.toCharArray();
 			for(char c: chars){
 				if(c == 'W'){
-					myObjects[moPos] = new GeometricObject(curPos,recLength,recLength);
+					myObjects[moPos] = new GeometricObject(new Vertex(curPos.getX(),curPos.getY()),recLength,recLength);
 					moPos++;
 				} else if (c == 'X') {
-					myObjects[moPos] = new Star(curPos,5,recLength/2,recLength);
+					myObjects[moPos] = new Star(new Vertex(curPos.getX()+1,curPos.getY()+1),5,recLength/2,recLength-2);
+					playerPos = moPos;
 					moPos++;
 				}
 				curPos.setX(curPos.getX()+recLength);
@@ -66,11 +136,11 @@ public class Labyrinth extends JPanel{
 	}
 	
 	public void show(){
-		JFrame frame = new JFrame("Labyrinth");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
-		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.setVisible(true);
-		repaint();
+		frame.pack();
 	}
 }

@@ -22,7 +22,7 @@ public class StartStopScenePanel extends ScenePanel{
 	public StartStopScenePanel(CollisionScene cs){
 		super(cs);
 	}
-	//100-(delay-10)*2,5.
+
 	public void show(){
 		btn.setBounds(collScene.getWidth()/2-100,collScene.getHeight()/2-25,200,50);
 		btn.setBorder(new LineBorder(Color.black, 3));
@@ -55,12 +55,12 @@ public class StartStopScenePanel extends ScenePanel{
 			}
 		});
 		speed.setBounds(collScene.getWidth()/2-12,collScene.getHeight()/2+50,50,50);
+		setLayout(null);
+		add(btn);
+		add(speedUp);
+		add(slowDown);
+		add(speed);
 		f.setSize(collScene.getWidth(),collScene.getHeight()+20);
-		this.setLayout(null);
-		this.add(btn);
-		this.add(speedUp);
-		this.add(slowDown);
-		this.add(speed);
 		f.add(this);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,9 +1,10 @@
 package de.hsrm.cs.oose13;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class GeometricObject implements MoveAndPaintable {
-    protected Vertex corner; //obere links
+    protected Vertex corner; //oben links
     protected Vertex movement;
     protected double width;
     protected double height;
@@ -42,7 +43,8 @@ public class GeometricObject implements MoveAndPaintable {
     
     @Override
     public void paintMeTo(Graphics g) {
-    	g.drawRect((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
+    	g.setColor(Color.black);
+    	g.fillRect((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
     }
     
     public double size(){
@@ -76,12 +78,10 @@ public class GeometricObject implements MoveAndPaintable {
     }
     
     public void invertXMovement(){
-//        movement.setX(movement.getX()-2*movement.getX());
     	movement.setX(movement.getX()*(-1));
     }
     
     public void invertYMovement(){
-//        movement.setY(movement.getY()-2*movement.getY());
     	movement.setY(movement.getY()*(-1));
     }
     

@@ -30,7 +30,7 @@ public class Star extends GeometricObject{
     
     @Override
     public void paintMeTo(Graphics g) {
-    	g.setColor(Color.YELLOW);
+    	g.setColor(Color.yellow);
     	g.fillPolygon(myPolygon);
     	g.setColor(Color.black);
     }
