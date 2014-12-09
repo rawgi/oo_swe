@@ -40,6 +40,12 @@ public class Star extends GeometricObject{
     	corner.move(movement);
     	createPolygon();
     }
+    
+    @Override
+    public void move(Vertex v){
+        corner.move(v);
+        createPolygon();
+    }
 	
     private void createPolygon(){
 	myPolygon.reset();

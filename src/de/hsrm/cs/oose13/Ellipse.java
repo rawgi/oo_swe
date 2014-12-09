@@ -1,5 +1,6 @@
 package de.hsrm.cs.oose13;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ellipse extends GeometricObject{
@@ -24,6 +25,8 @@ public class Ellipse extends GeometricObject{
 	
     @Override
     public void paintMeTo(Graphics g) {
-	g.drawOval((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
+    	g.setColor(Color.RED);
+    	g.fillOval((int)corner.getX(), (int)corner.getY(), (int)width, (int)height);
+    	g.setColor(Color.BLACK);
     }
 }
