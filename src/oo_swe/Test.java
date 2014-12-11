@@ -178,11 +178,11 @@ class Test{
 //		//Stern
 //		Labyrinth lab1 = new Labyrinth("lab1");
 //		lab1.show();
-//		//Kreis
+		//Kreis
 //		Labyrinth lab2 = new Labyrinth("lab2");
 //		lab2.show();
-		//Viereck
-		Labyrinth lab3 = new Labyrinth("lab3");
-		lab3.show();
+//		//Viereck
+//		Labyrinth lab3 = new Labyrinth("lab3");
+//		lab3.show();
 	}
 }

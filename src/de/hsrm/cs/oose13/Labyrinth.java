@@ -115,6 +115,22 @@ public class Labyrinth extends JPanel{
 		});
 	}
 	
+	private void moveUp(){
+		
+	}
+	
+	private void moveDown(){
+		
+	}
+	
+	private void moveLeft(){
+		
+	}
+	
+	private void moveRight(){
+		
+	}
+	
 	private void createObjectsArray(){
 		Vertex curPos = new Vertex(0,0);
 		int moPos = 0;
