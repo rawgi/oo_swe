@@ -2,13 +2,10 @@ package de.hsrm.cs.oose13;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import de.hsrm.cs.oose13.util.FileUtil;
 
@@ -113,22 +110,6 @@ public class Labyrinth extends JPanel{
 				System.out.println("right");
 			}
 		});
-	}
-	
-	private void moveUp(){
-		
-	}
-	
-	private void moveDown(){
-		
-	}
-	
-	private void moveLeft(){
-		
-	}
-	
-	private void moveRight(){
-		
 	}
 	
 	private void createObjectsArray(){
