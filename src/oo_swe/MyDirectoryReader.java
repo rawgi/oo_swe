@@ -18,45 +18,29 @@ import java.io.Writer;
 
 public class MyDirectoryReader {
 	
-	static List<File> fileList = new ArrayList<File>();
-	
 	//------Aufgabe 1------
-	//bei der 4. methode war mir nicht ganz klar, wozu man noch "startFile" benötigen sollte. Deshalb habe ich es nur mit einer Liste gemacht
 	public static List<File> getFileList() throws IOException{
-		return getFileList(new File(".").getCanonicalPath());
+		return getFileList(new File("."));
 	}
 	
 	public static List<File> getFileList(String fileName) throws IOException{
 		return getFileList(new File(fileName));
 	}
 	
-	public static List<File> getFileList(File startFile){
-		fileList.clear();
-		List<File> directoryContent = new ArrayList<File>();
-		for(File fileInDirectory: startFile.listFiles()){
-			directoryContent.add(fileInDirectory);
-		}
-		addAllToFileList(directoryContent);
-		
-		return fileList;
+	public static List<File> getFileList(File startFile) throws IOException{		
+		return getFileList(startFile, new ArrayList<File>());
 	}
 	
 	public static List<File> getFileList(File startFile, List<File> result) throws IOException{
 
-		return result;
-	}
-		
-	public static void addAllToFileList(List<File> result){
-		for(File file: result){
-			if(file.isDirectory()){
-				List<File> directoryContent = new ArrayList<File>();
-				for(File fileInDirectory: file.listFiles()){
-					directoryContent.add(fileInDirectory);
-				}
-				addAllToFileList(directoryContent);
+		if(startFile.isDirectory()){
+			for(File file: startFile.listFiles()){
+				getFileList(file, result);
 			}
-			fileList.add(file);
 		}
+		result.add(startFile);
+		
+		return result;
 	}
 	
 	//------Aufgabe 2------
@@ -79,10 +63,10 @@ public class MyDirectoryReader {
 	}
 	
 	public static void main(String[]args) throws Exception{
-//		System.out.println("aktueles verzeichnis");
-//		System.out.println(getFileList());
-//		System.out.println("projetaufgabe");
-//		System.out.println(getFileList("C:/Users/Daniel/git/projektaufgabe"));
+		System.out.println("aktueles verzeichnis");
+		System.out.println(getFileList());
+		System.out.println("projetaufgabe");
+		System.out.println(getFileList("C:/Users/Daniel/git/projektaufgabe"));
 		convert("C:/Users/Daniel/test/test.txt","C:/Users/Daniel/test/ausgabe.txt","UTF-8","UTF-16BE");
 	}
 }
